@@ -1,0 +1,20 @@
+{
+  "name": "trade-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ramakrishnan",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.3.3",
+    "mongoose-auto-increment": "^5.0.1"
+  }
+}
