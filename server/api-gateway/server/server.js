@@ -1,7 +1,12 @@
 require("../config/config");
 var express = require("express");
+const bodyParser = require("body-parser");
+
 var app = express();
+app.use(bodyParser.json());
+
 var httpProxy = require("http-proxy");
+const ServiceRegistry = require("./ServiceRegistry")
 var apiProxy = httpProxy.createProxyServer();
 
 var localHost = "http://localhost:";
@@ -16,35 +21,52 @@ app.use((req, res, next) => {
   next();
 });
 
+const serviceRegistry = new ServiceRegistry();
+app.post("/register", (req, res, next)=>{
+  console.log(req.body)
+  const serviceName = req.body.serviceName;
+  const servicePort = req.body.port;
+  const serviceIp = req.connection.remoteAddress.includes('::') ?
+      `[${req.connection.remoteAddress}]` : req.connection.remoteAddress;
+
+
+  serviceRegistry.add(serviceName, serviceIp, servicePort);
+  res.json({result: `${serviceName} at ${serviceIp}:${servicePort}`});
+})
+
 app.options("*", (req, res, next) => {
   res.status(200).end();
 });
 
 app.all("/trades*", (req, res) => {
+  const tradeService = serviceRegistry.get("trade-service")
   console.log("redirecting to Trade Service Port");
   apiProxy.web(req, res, {
-    target: localHost + process.env.TRADE_SERVICE_PORT
+    target: `http://${tradeService.ip}:${tradeService.port}`
   });
 });
 
 app.all("/commodities*", (req, res) => {
+  const refDataService = serviceRegistry.get("ref-data-service")
   console.log("redirecting to Reference Data Service Port");
   apiProxy.web(req, res, {
-    target: localHost + process.env.REF_DATA_SERVICE_PORT
+    target: `http://${refDataService.ip}:${refDataService.port}`
   });
 });
 
 app.all("/counterparties*", (req, res) => {
   console.log("redirecting to Reference Data Service Port");
+  const refDataService = serviceRegistry.get("ref-data-service")
   apiProxy.web(req, res, {
-    target: localHost + process.env.REF_DATA_SERVICE_PORT
+    target: `http://${refDataService.ip}:${refDataService.port}`
   });
 });
 
 app.all("/locations*", (req, res) => {
   console.log("redirecting to Reference Data Service Port");
+  const refDataService = serviceRegistry.get("ref-data-service")
   apiProxy.web(req, res, {
-    target: localHost + process.env.REF_DATA_SERVICE_PORT
+    target: `http://${refDataService.ip}:${refDataService.port}`
   });
 });
 

@@ -3,7 +3,8 @@ const express = require("express");
 const _ = require("lodash");
 const { Trade } = require("../models/trade");
 const bodyParser = require("body-parser");
-const moment = require('moment');
+const moment = require("moment");
+const request = require('request');
 
 const app = express();
 app.use(bodyParser.json());
@@ -40,20 +41,20 @@ app.post("/trades", (req, res) => {
 app.post("/trades/filter", (req, res) => {
   let filter = {};
   if (req.body.startDate && req.body.endDate) {
-    var endDate = moment(req.body.endDate).endOf('day')
-    filter.tradeDate = {"$gte": req.body.startDate, "$lt": endDate.toDate()};
+    var endDate = moment(req.body.endDate).endOf("day");
+    filter.tradeDate = { $gte: req.body.startDate, $lt: endDate.toDate() };
   }
   if (req.body.side) {
     filter.side = req.body.side;
   }
   if (req.body.commodities.length > 0) {
-    filter.commodity = {$in: req.body.commodities};
+    filter.commodity = { $in: req.body.commodities };
   }
   if (req.body.counterparties.length > 0) {
     filter.counterparty = { $in: req.body.counterparties };
   }
   if (req.body.locations.length > 0) {
-    filter.location = {$in: req.body.locations};
+    filter.location = { $in: req.body.locations };
   }
   Trade.find(filter).then(
     docs => res.send(_.map(docs, doc => omitFields(doc))),
@@ -93,8 +94,26 @@ app.delete("/trades/:id", (req, res) => {
     });
 });
 
-app.listen(process.env.PORT, "localhost", () => {
+app.listen(process.env.PORT, () => {
   console.log("listening on port %s", process.env.PORT);
+
+  const announce = timeout => {
+    request.post(
+      `http://${process.env.GATEWAY_IP}:${process.env.GATEWAY_PORT}/register`,
+      {json: { serviceName: "trade-service", port: process.env.PORT }},
+      (err, res) => {
+        if (err) {
+          console.log(
+            "Failed to register to gateway. Gateway returned error. " + err
+          );
+        } else {
+          console.log("tradeService registered with gateway.");
+        }
+      }
+    );
+  };
+
+  setInterval(announce, 5000);
 });
 
 const omitFields = function(doc) {

@@ -1,5 +1,6 @@
 require("../config/config");
 const express = require("express");
+const request = require("request");
 
 const { mongoose } = require("../db/mongoose");
 const { Commodity } = require("../models/commodity");
@@ -43,6 +44,25 @@ app.get("/locations", (req, res) => {
   res.send;
 });
 
-app.listen(process.env.PORT, "localhost", () => {
-  console.log("listening on port %s", process.env.PORT);
+app.listen(process.env.PORT, () => {
+  const announce = timeout => {
+    var options = {
+      uri: `http://${process.env.GATEWAY_IP}:${
+        process.env.GATEWAY_PORT
+      }/register`,
+      method: "POST",
+      json: { serviceName: "ref-data-service", port: process.env.PORT }
+    };
+    request(options, (err, res) => {
+      if (err) {
+        console.log(
+          "Failed to register to gateway. Gateway returned error. " + err
+        );
+      } else {
+        console.log("RefDataService registered with gateway.");
+      }
+    });
+  };
+
+  setInterval(announce, 5000);
 });
