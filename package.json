@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "cd ./client && npm start",
+    "start-oauth": "cd ./server/google-oauth && npm start",
+    "start-api-gateway": "cd ./server/api-gateway && npm start",
+    "start-trade": "cd ./server/trade-service && npm start",
+    "start-marketdata": "cd ./server/market-data-service && npm start",
+    "start-refdata": "cd ./server/ref-data-service && npm start",
+    "start-notification": "cd ./server/notification-service && npm start",
+    "start-micro-services": "concurrently \"npm run start-oauth\" \"npm run start-api-gateway\" \"npm run start-trade\" \"npm run start-marketdata\" \"npm run start-refdata\" \"npm run start-notification\""
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
