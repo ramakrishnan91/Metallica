@@ -1,11 +1,16 @@
 var mongoose = require("mongoose");
 
-var Price = mongoose.model("Price", {
+var priceSchema = new mongoose.Schema({
   identifier: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 2,
+    trim: true
+  },
+  name: {
+    type: String,
+    required: true,
     trim: true
   },
   price: {
@@ -14,4 +19,4 @@ var Price = mongoose.model("Price", {
   }
 });
 
-module.exports = { Price };
+module.exports = mongoose.model("Price", priceSchema);

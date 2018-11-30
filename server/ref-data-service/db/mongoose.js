@@ -8,13 +8,13 @@ const Commodity = require("../models/commodity");
 const Location = require("../models/location");
 
 const dummyCommodities = JSON.parse(
-  fs.readFileSync("./models/dummy_data/dummyCommodities.json", "utf8")
+  fs.readFileSync("./models/dummy-data/dummyCommodities.json", "utf8")
 );
 const dummyCounterparties = JSON.parse(
-  fs.readFileSync("./models/dummy_data/dummyCounterparties.json", "utf8")
+  fs.readFileSync("./models/dummy-data/dummyCounterparties.json", "utf8")
 );
 const dummyLocations = JSON.parse(
-  fs.readFileSync("./models/dummy_data/dummyLocations.json", "utf8")
+  fs.readFileSync("./models/dummy-data/dummyLocations.json", "utf8")
 );
 
 mongoose

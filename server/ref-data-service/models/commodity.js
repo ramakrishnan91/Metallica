@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var CommoditySchema = new mongoose.Schema({
+var commoditySchema = new mongoose.Schema({
   identifier: {
     type: String,
     required: true,
@@ -16,4 +16,4 @@ var CommoditySchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Commodity", CommoditySchema);
+module.exports = mongoose.model("Commodity", commoditySchema);

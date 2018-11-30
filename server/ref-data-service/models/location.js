@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var LocationSchema = new mongoose.Schema({
+var locationSchema = new mongoose.Schema({
   identifier: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ var LocationSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Location", LocationSchema);
+module.exports = mongoose.model("Location", locationSchema);

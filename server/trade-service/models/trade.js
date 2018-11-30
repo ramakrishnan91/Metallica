@@ -1,7 +1,9 @@
 var mongoose = require("mongoose");
 var autoIncrement = require("mongoose-auto-increment");
 
-connection = mongoose.createConnection(process.env.MONGODB_URI);
+connection = mongoose.createConnection(process.env.MONGODB_URI, {
+  useNewUrlParser: true
+});
 autoIncrement.initialize(connection);
 
 var tradeSchema = new mongoose.Schema({

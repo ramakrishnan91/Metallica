@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Gold",
+    "identifier": "AU",
+    "price": 1220
+  },
+  {
+    "name": "Silver",
+    "identifier": "AG",
+    "price": 14
+  },
+  {
+    "name": "Aluminium",
+    "identifier": "AL",
+    "price": 1935
+  },
+  {
+    "name": "Zinc",
+    "identifier": "ZN",
+    "price": 2480
+  },
+  {
+    "name": "Copper",
+    "identifier": "CU",
+    "price": 6100
+  }
+]

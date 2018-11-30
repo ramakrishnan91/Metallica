@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var CounterpartySchema = new mongoose.Schema({
+var counterpartySchema = new mongoose.Schema({
   identifier: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ var CounterpartySchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Counterparty", CounterpartySchema);
+module.exports = mongoose.model("Counterparty", counterpartySchema);
