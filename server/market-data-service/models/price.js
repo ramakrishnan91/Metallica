@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var priceSchema = new mongoose.Schema({
+const Price = mongoose.model("Price", new mongoose.Schema({
   identifier: {
     type: String,
     required: true,
@@ -17,6 +17,6 @@ var priceSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
-});
+}));
 
-module.exports = mongoose.model("Price", priceSchema);
+module.exports =  {Price};

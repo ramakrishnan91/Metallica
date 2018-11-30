@@ -3,7 +3,7 @@ const fs = require("fs");
 
 mongoose.Promise = global.Promise;
 
-const Price = require("../models/price");
+const {Price} = require("../models/price");
 const dummyPrices = JSON.parse(
   fs.readFileSync("./models/dummyPrices.json", "utf8")
 );
