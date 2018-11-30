@@ -3,7 +3,7 @@ var express = require("express");
 const bodyParser = require("body-parser");
 
 var app = express();
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 var httpProxy = require("http-proxy");
 const ServiceRegistry = require("./ServiceRegistry")
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 const serviceRegistry = new ServiceRegistry();
-app.post("/register", (req, res, next)=>{
+app.post("/register", bodyParser.json(), (req, res, next)=>{
   const serviceName = req.body.serviceName;
   const servicePort = req.body.port;
   const serviceIp = req.connection.remoteAddress.includes('::') ?
