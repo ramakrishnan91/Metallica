@@ -196,7 +196,8 @@ class EditTrade extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        return this.props.publishEditedTrade(res);
+        this.props.publishEditedTrade(res);
+        this.handleCancel();
       })
       .catch(err => err);
   }

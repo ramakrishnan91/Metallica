@@ -41,8 +41,9 @@ app.post("/trades", (req, res) => {
 app.post("/trades/filter", (req, res) => {
   let filter = {};
   if (req.body.startDate && req.body.endDate) {
-    var endDate = moment(req.body.endDate).endOf("day");
-    filter.tradeDate = { $gte: req.body.startDate, $lt: endDate.toDate() };
+    var startDate = moment(req.body.startDate).subtract(1, 'days').endOf("day");
+    var endDate = moment(req.body.endDate).add(1, 'days').endOf("day");
+    filter.tradeDate = { $gte: startDate, $lt: endDate.toDate() };
   }
   if (req.body.side) {
     filter.side = req.body.side;
