@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Direct Energy",
+    "identifier": "DE"
+  },
+  {
+    "name": "ENI Trading & Shipping",
+    "identifier": "ETS"
+  },
+  {
+    "name": "Enbridge",
+    "identifier": "ENB"
+  },
+  {
+    "name": "Uniper",
+    "identifier": "EON"
+  }
+]

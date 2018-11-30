@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
-var Location = mongoose.model('Location', {
+var LocationSchema = new mongoose.Schema({
   identifier: {
     type: String,
     required: true,
@@ -15,4 +15,4 @@ var Location = mongoose.model('Location', {
   }
 });
 
-module.exports = {Location};
+module.exports = mongoose.model("Location", LocationSchema);
