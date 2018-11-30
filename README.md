@@ -16,12 +16,14 @@ Installation guidelines :
 
 4. Commands for installing node modules for Micro services :
 
-    a. trade-service -> cd ./server/trade-service && npm install
-    b. market-data-service -> cd ./server/market-data-service && npm install
-    c. ref-data-service -> "cd ./server/ref-data-service && npm install"
-    d. notification-service -> cd ./server/notification-service && npm install
-    e. api-gateway -> cd ./server/api-gateway && npm install
-    f. google-oauth -> cd ./server/google-oauth && npm install
+    1. client -> cd ./client && npm install
+    2. google-oauth -> cd ./server/google-oauth && npm install
+    3. api-gateway -> cd ./server/api-gateway && npm install    
+    4. market-data-service -> cd ./server/market-data-service && npm install   
+    5. notification-service -> cd ./server/notification-service && npm install
+    6. trade-service -> cd ./server/trade-service && npm install
+    7. ref-data-service -> cd ./server/ref-data-service && npm install
+    
 
 5. Running the application :
 

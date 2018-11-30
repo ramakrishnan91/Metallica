@@ -24,7 +24,6 @@ var consumeAndEmitToSocket = function(ch, exchange, queueName, io, eventName) {
       q.queue,
       msg => {
         msgJSON = JSON.parse(msg.content.toString());
-        console.log("Emiting event %s with message %s", eventName, msgJSON);
         io.emit(eventName, msgJSON);
       },
       { noAck: true }

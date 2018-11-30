@@ -22,7 +22,6 @@ const publishPrices = (ch, exchange) => {
   Price.find().then(
     docs => {
       ch.publish(exchange, "", Buffer.from(JSON.stringify(docs)));
-      console.log(" [x] Sent %s", docs);
     },
     err => {
       console.log("unable to get prices ", err);

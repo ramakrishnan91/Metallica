@@ -12,7 +12,6 @@ class Trade extends React.Component {
   render() {
     return (
       <div>
-
         {this.props.isEditing && <EditTrade cancel={this.cancelEdit} />}
       </div>
     );

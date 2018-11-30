@@ -9,10 +9,9 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 io.on("connection", socket => {
-  console.log("New client socket created");
   subscribeMsg(io);
 });
 
 server.listen(process.env.PORT, () => {
-  console.log("App Starting on %s", process.env.PORT);
+  console.log("Notification service started");
 });

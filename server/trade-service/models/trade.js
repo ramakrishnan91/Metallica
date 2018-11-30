@@ -7,6 +7,10 @@ connection = mongoose.createConnection(process.env.MONGODB_URI, {
 autoIncrement.initialize(connection);
 
 var tradeSchema = new mongoose.Schema({
+  id:{
+    type: Number,
+    required: true
+  },
   tradeDate: {
     type: Date,
     required: true

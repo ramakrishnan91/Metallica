@@ -58,8 +58,6 @@ app.listen(process.env.PORT, () => {
         console.log(
           "Failed to register to gateway. Gateway returned error. " + err
         );
-      } else {
-        console.log("RefDataService registered with gateway.");
       }
     });
   };

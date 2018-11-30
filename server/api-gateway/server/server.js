@@ -23,7 +23,6 @@ app.use((req, res, next) => {
 
 const serviceRegistry = new ServiceRegistry();
 app.post("/register", (req, res, next)=>{
-  console.log(req.body)
   const serviceName = req.body.serviceName;
   const servicePort = req.body.port;
   const serviceIp = req.connection.remoteAddress.includes('::') ?
@@ -40,7 +39,6 @@ app.options("*", (req, res, next) => {
 
 app.all("/trades*", (req, res) => {
   const tradeService = serviceRegistry.get("trade-service")
-  console.log("redirecting to Trade Service Port");
   apiProxy.web(req, res, {
     target: `http://${tradeService.ip}:${tradeService.port}`
   });
@@ -48,14 +46,12 @@ app.all("/trades*", (req, res) => {
 
 app.all("/commodities*", (req, res) => {
   const refDataService = serviceRegistry.get("ref-data-service")
-  console.log("redirecting to Reference Data Service Port");
   apiProxy.web(req, res, {
     target: `http://${refDataService.ip}:${refDataService.port}`
   });
 });
 
 app.all("/counterparties*", (req, res) => {
-  console.log("redirecting to Reference Data Service Port");
   const refDataService = serviceRegistry.get("ref-data-service")
   apiProxy.web(req, res, {
     target: `http://${refDataService.ip}:${refDataService.port}`
@@ -63,7 +59,6 @@ app.all("/counterparties*", (req, res) => {
 });
 
 app.all("/locations*", (req, res) => {
-  console.log("redirecting to Reference Data Service Port");
   const refDataService = serviceRegistry.get("ref-data-service")
   apiProxy.web(req, res, {
     target: `http://${refDataService.ip}:${refDataService.port}`

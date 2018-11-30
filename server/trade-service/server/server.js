@@ -4,7 +4,7 @@ const _ = require("lodash");
 const { Trade } = require("../models/trade");
 const bodyParser = require("body-parser");
 const moment = require("moment");
-const request = require('request');
+const request = require("request");
 
 const app = express();
 app.use(bodyParser.json());
@@ -100,14 +100,12 @@ app.listen(process.env.PORT, () => {
   const announce = timeout => {
     request.post(
       `http://${process.env.GATEWAY_IP}:${process.env.GATEWAY_PORT}/register`,
-      {json: { serviceName: "trade-service", port: process.env.PORT }},
+      { json: { serviceName: "trade-service", port: process.env.PORT } },
       (err, res) => {
         if (err) {
           console.log(
             "Failed to register to gateway. Gateway returned error. " + err
           );
-        } else {
-          console.log("tradeService registered with gateway.");
         }
       }
     );

@@ -188,11 +188,11 @@ class EditTrade extends React.Component {
     var url = tradeId === 0 ? localHost : localHost + tradeId;
     var method = tradeId === 0 ? "POST" : "PUT";
     return fetch(url, {
-      method: method,
-      body: JSON.stringify(this.state.trade),
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      method: method,
+      body: JSON.stringify(this.state.trade)
     })
       .then(res => res.json())
       .then(res => {

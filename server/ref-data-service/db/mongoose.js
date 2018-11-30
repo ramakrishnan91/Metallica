@@ -3,9 +3,9 @@ const fs = require("fs");
 
 mongoose.Promise = global.Promise;
 
-const Counterparty = require("../models/counterparty");
-const Commodity = require("../models/commodity");
-const Location = require("../models/location");
+const { Counterparty } = require("../models/counterparty");
+const { Commodity } = require("../models/commodity");
+const { Location } = require("../models/location");
 
 const dummyCommodities = JSON.parse(
   fs.readFileSync("./models/dummy-data/dummyCommodities.json", "utf8")
